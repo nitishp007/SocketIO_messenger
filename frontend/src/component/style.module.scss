@@ -1,0 +1,35 @@
+.iconBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    background-color: #222e35;
+    height: 96vh;
+    width: 100vw;
+    .icon{
+        border-radius: 70%;
+        color: grey;
+        height: 2rem;
+    }
+}
+.search{
+    background-color: #111b21;
+    overflow: 'clip';
+    .icon{
+        border-radius: 70%;
+        color: rgb(220, 212, 212);
+        height: 2rem;
+        padding: 0 10px;
+        
+    }
+}
+.message{
+    background-color: rgba(31, 34, 35, 0.881);
+}
+
+.list{
+    :hover{
+        background-color: #26333b6c;
+    }
+}
