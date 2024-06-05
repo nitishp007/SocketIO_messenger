@@ -1,13 +1,41 @@
-import APP from 'express';
+import express from 'express';
+import configureExpressApp from './expressConfig/index.js';
+import connectDB from './dbConnection/index.js';
+import { Server } from "socket.io";
+import { createServer } from "http";
+import cors from "cors";
 
-const app =new APP();
+const secretKeyJWT = "ananananananananana";
 const PORT = 4000;
 
-constServer = () => {
+
+const app = express();
+configureExpressApp(app);
+const server = createServer(app);
+
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
+
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
+
+const startServer = () => {
     Promise.all([connectDB()]).then(()=>{
-        app.listen(PORT);
-        console.log(`Server stared on port ${PORT}`);
+        server.listen(PORT);
+        console.log(`Server has stared on port ${PORT}`);
     })
 }
 
 startServer();
+
