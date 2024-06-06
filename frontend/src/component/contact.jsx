@@ -9,7 +9,7 @@ const Contact = (props) => {
         <span className={style.list} onClick={() => setchat(userData)}>
             <Stack direction={'row'} padding={2} style={{ cursor: 'pointer' }} justifyContent={'space-between'} >
                 <Stack direction={'row'} >
-                    <img style={{ width: '45px', height: '45px', borderRadius: '100%' }} src={Pic} />
+                    <img style={{ width: '45px', height: '45px', borderRadius: '100%' }} src={Pic}  alt=''/>
                     <Stack paddingLeft={1} alignItems={'start'} >
                         <div style={{ color: 'rgb(220, 212, 212)', fontSize: '18px' }}>{userData?.name}</div>
                         <div style={{ color: 'grey', fontSize: '14px' }}>{userData?.lastText}</div>

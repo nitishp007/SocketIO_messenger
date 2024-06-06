@@ -4,6 +4,7 @@ import connectDB from './dbConnection/index.js';
 import { Server } from "socket.io";
 import { createServer } from "http";
 import cors from "cors";
+import userRoutes from './routes/userRoutes.js';
 
 const secretKeyJWT = "ananananananananana";
 const PORT = 4000;
@@ -11,28 +12,27 @@ const PORT = 4000;
 
 const app = express();
 configureExpressApp(app);
-const server = createServer(app);
 
+app.use(express.json());
 
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+app.get('/', (req, res) => {
+  res.send('API is running...');
 });
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
     credentials: true,
   })
 );
+app.use('/api/user',userRoutes);
+
+
 
 const startServer = () => {
     Promise.all([connectDB()]).then(()=>{
-        server.listen(PORT);
+        app.listen(PORT);
         console.log(`Server has stared on port ${PORT}`);
     })
 }
